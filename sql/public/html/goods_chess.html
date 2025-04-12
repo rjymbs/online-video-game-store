@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Интернет-магазин цифровых игр и игровых аксессуаров. Широкий ассортимент, доступные цены, быстрая доставка.">
+    <meta name="keywords" content="игры, компьютерные игры, цифровые игры, игровые аксессуары, интернет-магазин игр">
+    <meta name="author" content="Game Store">
+    <meta name="copyright" content="Game Store">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="7 days">
+    <link rel="canonical" href="https://www.gamestore.com/">
+    <link rel="stylesheet" href="libs/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="libs/bootstrap-grid.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/reboot.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/goods.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <style>
+      .product-modal-content {
+    color: black; /*  цвет текста черным */
+}
+        .product-modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgb(0,0,0); 
+            background-color: rgba(0,0,0,0.4); 
+        }
+
+        .product-modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; 
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; 
+        }
+
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+    <title>Список товаров</title>
+</head>
+<body>
+<header id="header">
+    <nav class="navbar">
+        <div class="container">
+          <div class="navbar-left">
+            <img src="../images/istockphoto-1249882585-170667a.jpg" alt="logo" width="90" height="50">
+            <a href="#" class="navbar-brand">GameStore</a>
+        </div>
+            <div class="navbar-right">
+                <a href="#" id="cartButton" class="callback">Корзина</a>
+                <a href="#" id="accountLink" class="callback">Личный кабинет</a>
+            </div>
+        </div>
+    </nav>
+</header>
+<main>
+    <div class="navbar-submenu">
+        <div class="navbar-nav">
+            <ul class="navbar-nav-list">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="#footer">О Нас</a></li>
+                <li>
+                    <a href="../html/sets.html">Поиск товара</a>
+                </li>
+                <li>
+                    <a href="#">Список жанров</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../html/goods_discord.html">Гонки</a></li>
+                            <li><a href="../html/goods_games.html">Стратегии</a></li>
+                            <li><a href="../html/goods_chess.html">Шахматы</a></li>
+                        </ul>
+                </li>
+                <li>
+                    <a href="../html/reviews.html">Отзывы товаров</a>
+                </li>
+                <li>
+                    <a href="../html/support.html">Обратиться в поддержку</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+ 
+    <div class="goods-wrapper" id="goods-list"></div>
+</main>
+<div id="cartModal" class="cart-modal">
+    <div class="cart-modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Корзина</h2>
+        <div class="cart-items"></div>
+        <div class="cart-total">Итого: 0р</div>
+        <div class="cart-buttons">
+            <button class="clear-cart">Очистить</button>
+            <button class="checkout">Оплатить</button>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h4 id="footer">О нас</h4>
+                <p>Мы являемся ведущим онлайн-магазином игр. Мы предлагаем широкий ассортимент цифровых игр по доступным ценам.</p>
+            </div>
+            <div class="col-md-3">
+                <h4>Навигация</h4>
+                <ul>
+                    <li><a href="../html/index.html">Главная</a></li>
+                    <li><a href="../html/sets.html">Наборы по жанрам</a></li>
+                    <li><a href="../html/goods_discord.html">Популярная подборка</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h4>Контакты</h4>
+                <p>discord: GameStore<br>Email: GameStore@game-store.GameStore<br></p>
+            </div>
+            <div class="col-md-3">
+                <h4>Подписка</h4>
+                <p>Подпишитесь на наши новости и акции:</p>
+                <form id="subscribeForm">
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="emailInput" placeholder="Введите email" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="subscribeButton">Подписаться</button>
+                </form>
+                <div id="subscribeMessage" class="mt-2"></div>
+            </div>
+        </div>
+        <div class="row2">
+            <div class="col-md-12 text-center">
+                <p>&copy; 2024 Game Store.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+  const cart = [];
+    const goodsList = document.getElementById('goods-list');
+    const cartModal = document.getElementById('cartModal');
+    const cartItems = document.querySelector('.cart-items');
+    const cartTotal = document.querySelector('.cart-total');
+
+    // Проверяем авторизацию пользователя
+    fetch('/check-session')
+        .then(response => response.json())
+        .then(data => {
+            const accountLink = document.getElementById('accountLink');
+            if (data.isLoggedIn) {
+                if (data.userType === 'admin') {
+                    accountLink.href = '../html/adminLK.html'; // Admin dashboard
+                } else {
+                    accountLink.href = '../html/lk.html'; // User dashboard
+                }
+            } else {
+                accountLink.href = '../html/log.html'; // Login page
+            }
+        })
+        .catch(error => console.error('Ошибка проверки сессии:', error));
+    // Подгрузка товаров из БД
+    fetch('/products')
+              .then(response => response.json())
+              .then(products => {
+                  // Фильтруем товары по жанру "racing"
+                  const racingProducts = products.filter(product => product.genres.includes('chess'));
+                  racingProducts.forEach(product => {
+                      const item = document.createElement('div');
+                      item.className = 'goods-item';
+                      item.innerHTML = `
+                          <img src="${product.image_url}" alt="${product.name}">
+                          <h3 class="goods-title">${product.name}</h3>
+                          <p class="goods-price">${product.price}р</p>
+                          <button class="btn btn-primary add-to-cart" data-id="${product.id}">Добавить в корзину</button>
+                      `;
+                      goodsList.appendChild(item);
+                  });
+  
+                  document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', () => {
+                    const productId = button.getAttribute('data-id');
+                    const product = products.find(p => p.id == productId);
+                    if (product) {
+                        cart.push({
+                            id: product.id,
+                            name: product.name,
+                            price: product.price 
+                        });
+                        console.log('Cart after adding item:', cart);
+                        updateCart();
+                    }
+                });
+            });
+        });
+
+        function updateCart() {
+    cartItems.innerHTML = '';
+    let total = 0;
+
+    cart.forEach(item => {
+        const itemElement = document.createElement('div');
+        itemElement.textContent = `${item.name} - ${item.price}р`;
+        cartItems.appendChild(itemElement);
+        total += parseFloat(item.price); 
+    });
+
+    cartTotal.textContent = `Итого: ${total.toFixed(2)}р`; 
+}
+
+ 
+    document.getElementById('cartButton').addEventListener('click', () => {
+        cartModal.style.display = 'block';
+    });
+
+    document.querySelector('.close-button').addEventListener('click', () => {
+        cartModal.style.display = 'none';
+    });
+
+    document.querySelector('.clear-cart').addEventListener('click', () => {
+        cart.length = 0;
+        updateCart();
+    });
+
+    document.querySelector('.checkout').addEventListener('click', () => {
+    if (cart.length === 0) {
+        alert('Корзина пуста!');
+        return;
+    }
+
+    console.log('Cart before checkout:', cart); 
+
+    fetch('/checkout', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(cart) 
+    })
+    .then(response => {
+        if (response.ok) {
+            alert('Товары успешно приобретены!');
+            cart.length = 0; 
+            updateCart();
+            cartModal.style.display = 'none'; 
+        } else {
+            return response.text().then(text => {
+                alert('Ошибка при оформлении заказа: ' + text); 
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Error during checkout:', error);
+        alert('Ошибка при оформлении заказа.');
+    });
+});
+  </script>
+</body>
+<script src="../js/addProduct.js"></script>
+<script src="../js/subscribe.js"></script>
+</html>

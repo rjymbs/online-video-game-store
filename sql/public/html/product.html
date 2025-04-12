@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Информация о товаре - GameStore</title>
+    <link rel="stylesheet" href="../css/reboot.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/product.css">
+</head>
+<body>
+    <header id="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-left">
+                    <img src="../images/istockphoto-1249882585-170667a.jpg" alt="logo" width="90" height="50">
+                    <a href="../html/index.html" class="navbar-brand">GameStore</a>
+                </div>
+                <div class="navbar-right">
+                    <a href="#" id="cartButton" class="callback">Корзина</a>
+                    <a href="#" id="accountLink" class="callback">Личный кабинет</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="product-container">
+        <div class="product-gallery">
+            <div class="main-image">
+                <img id="productMainImage" src="" alt="Основное изображение товара">
+            </div>
+            <div class="thumbnails" id="productThumbnails"></div>
+        </div>
+    
+        <div class="product-info">
+            <h1 id="productTitle"></h1>
+            <div class="product-meta">
+                <span class="product-id" id="productId"></span>
+                <span class="product-rating" id="productRating"></span>
+            </div>
+    
+            <div class="product-price-block">
+                <span class="price" id="productPrice"></span>
+                <span class="old-price" id="productOldPrice"></span>
+                <span class="discount" id="productDiscount"></span>
+            </div>
+    
+            <div class="product-description" id="productDescription"></div>
+    
+            <div class="product-details">
+                <h3>Характеристики</h3>
+                <table>
+                    <tr>
+                        <th>Жанр:</th>
+                        <td id="productGenre"></td>
+                    </tr>
+                </table>
+            </div>
+    
+            <div class="product-actions">
+                <button class="btn-add-to-cart" id="addToCart">Добавить в корзину</button>
+                <button class="btn-wishlist" id="addToWishlist">В избранное</button>
+            </div>
+        </div>
+    
+        <div class="product-reviews">
+            <h2>Отзывы о товаре <span id="reviewsCount"></span></h2>
+            <div class="reviews-list" id="reviewsList"></div>
+            <button class="btn-show-all-reviews" id="showAllReviews">Показать все отзывы</button>
+            
+            <div class="add-review" id="addReviewSection">
+                <h3>Оставить отзыв</h3>
+                <div class="rating-stars">
+                    <span class="star" data-value="1">★</span>
+                    <span class="star" data-value="2">★</span>
+                    <span class="star" data-value="3">★</span>
+                    <span class="star" data-value="4">★</span>
+                    <span class="star" data-value="5">★</span>
+                </div>
+                <textarea id="reviewText" placeholder="Ваш отзыв..."></textarea>
+                <div class="review-anonymity">
+                    <input type="checkbox" id="showName">
+                    <label for="showName">Показать мое имя в отзыве</label>
+                </div>
+                <button id="submitReview" class="btn-submit-review">Отправить отзыв</button>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <!-- Футер как на других страницах -->
+    </footer>
+
+    <script src="../js/product.js"></script>
+</body>
+</html>

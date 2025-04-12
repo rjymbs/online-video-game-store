@@ -1,0 +1,254 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #0b061b;
+}
+.wrapper_sets {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container_sets {
+    height: 400px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: start;
+}
+
+.card_sets {
+    width: 80px;
+    border-radius: .75rem;
+    background-size: cover;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 2rem;
+    margin: 0 10px;
+    display: flex;
+    align-items: flex-end;
+    transition: .6s cubic-bezier(.28,-0.03,0,.99);
+    box-shadow: 0px 10px 30px -5px rgba(0,0,0,0.8);
+}
+
+.card_sets > .row_sets {
+    color: rgb(59, 126, 250);
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.card_sets > .row_sets > .icon_sets {
+    background: #223;
+    color: white;
+    border-radius: 50%;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+}
+
+.card_sets > .row_sets > .description_sets {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+    height: 80px;
+    width: 520px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition-delay: .3s;
+    transition: all .3s ease;
+}
+
+.description_sets p {
+    color: #1c6977;
+    padding-top: 5px;
+}
+
+.description_sets h4 {
+    text-transform: uppercase;
+}
+
+input {
+    display: block;
+}
+.search-container {
+    display: flex;
+    justify-content: center; 
+    margin: 20px 0; 
+}
+
+#searchInput {
+    width: 80%; 
+    max-width: 600px; 
+    padding: 10px;
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    font-size: 16px;
+}
+input:checked + label {
+    width: 600px;
+}
+
+input:checked + label .description_sets {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+.card_sets[for="c1"] {
+    background-image: url('../images/communicate.jpg');
+}
+.card_sets[for="c2"] {
+    background-image: url('../images/game.jpg');
+}
+.card_sets[for="c3"] {
+    background-image: url('../images/chess.jpg');
+}
+.search-container {
+    margin: 20px 0;
+}
+
+.products-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 5px 0;
+}
+
+.product-item h5 {
+    margin: 0;
+}
+
+.add-to-cart {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+
+
+/* новый дизайн */
+.filter-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #1a1a2e;
+    border-radius: 8px;
+    max-width: 1200px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+}
+
+.filter-group label {
+    color: #fff;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.filter-select {
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #444;
+    background-color: #16213e;
+    color: #fff;
+    cursor: pointer;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: #4cc9f0;
+}
+
+.filter-reset {
+    padding: 8px 16px;
+    background-color: #e94560;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: flex-end;
+    transition: background-color 0.3s;
+}
+
+.filter-reset:hover {
+    background-color: #d13354;
+}
+
+.goods-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.goods-item {
+    background: #16213e;
+    border-radius: 8px;
+    padding: 15px;
+    color: white;
+    transition: transform 0.3s;
+}
+
+.goods-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.goods-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.goods-title {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #fff;
+}
+
+.goods-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #4cc9f0;
+    margin-bottom: 15px;
+}
+
+.add-to-cart {
+    width: 100%;
+    padding: 8px;
+    background-color: #4cc9f0;
+    color: #0b061b;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.add-to-cart:hover {
+    background-color: #3aa8d8;
+}

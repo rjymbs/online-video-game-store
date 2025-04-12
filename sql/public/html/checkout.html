@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оформление заказа - GameStore</title>
+    <link rel="stylesheet" href="../css/reboot.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/checkout.css">
+</head>
+<body>
+    <header id="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-left">
+                    <img src="../images/istockphoto-1249882585-170667a.jpg" alt="logo" width="90" height="50">
+                    <a href="../html/index.html" class="navbar-brand">GameStore</a>
+                </div>
+                <div class="navbar-right">
+                    <a href="../html/cart.html" id="cartButton" class="callback">Корзина</a>
+                    <a href="#" id="accountLink" class="callback">Личный кабинет</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div id="nav-container"></div>
+    <main class="checkout-container">
+        <div class="checkout-steps">
+            <div class="step active">1. Корзина</div>
+            <div class="step active">2. Оформление</div>
+            <div class="step">3. Подтверждение</div>
+        </div>
+
+        <div class="checkout-content">
+            <div class="checkout-form">
+                <h1>Оформление заказа</h1>
+                
+                <form id="orderForm">
+                    <div class="form-section">
+                        <h2>Контактная информация</h2>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        
+                    </div>
+
+                    <div class="form-section">
+                        <h2>Способ оплаты</h2>
+                        <div class="payment-methods">
+                            <label class="payment-method">
+                                <input type="radio" name="payment" value="card" checked>
+                                <span>Банковская карта</span>
+                            </label>
+                            <label class="payment-method">
+                                <input type="radio" name="payment" value="balance">
+                                <span>Баланс аккаунта</span>
+                                <span class="balance-amount">  </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-section" id="cardDetails">
+                        <h2>Данные карты</h2>
+                        <div class="form-group">
+                            <label for="cardNumber">Номер карты *</label>
+                            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="cardExpiry">Срок действия *</label>
+                                <input type="text" id="cardExpiry" placeholder="MM/YY">
+                            </div>
+                            <div class="form-group">
+                                <label for="cardCvc">CVC/CVV *</label>
+                                <input type="text" id="cardCvc" placeholder="123">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-back" onclick="window.location.href='cart.html'">Назад</button>
+                        <button type="submit" class="btn-submit">Оформить заказ</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="order-summary">
+                <h2>Ваш заказ</h2>
+                <div class="order-items" id="orderItems"></div>
+                <div class="order-totals">
+                    <div class="total-row">
+                        <span>Товары</span>
+                        <span id="orderSubtotal">0 ₽</span>
+                    </div>
+                    <div class="total-row">
+                        <span>Скидка</span>
+                        <span id="orderDiscount">0 ₽</span>
+                    </div>
+                    <div class="total-row grand-total">
+                        <span>Итого</span>
+                        <span id="orderTotal">0 ₽</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-container"></div>
+    <script>
+        fetch('../html/footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footer-container').innerHTML = html;
+            });
+    </script>
+    <script>
+        fetch('../html/nav.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('nav-container').innerHTML = html;
+            });
+    </script>
+    <script src="../js/checkout.js"></script>
+    <script>
+        
+        
+        // Проверяем авторизацию пользователя
+        fetch('/check-session')
+            .then(response => response.json())
+            .then(data => {
+                const accountLink = document.getElementById('accountLink');
+                if (data.isLoggedIn) {
+                    if (data.userType === 'admin') {
+                        accountLink.href = '../html/adminLK.html';
+                    } else {
+                        accountLink.href = '../html/lk.html';
+                    }
+                    
+                    // Загружаем баланс пользователя
+                    fetch('/user/balance')
+                        .then(response => response.json())
+                        .then(balanceData => {
+                            document.getElementById('availableBalance').textContent = balanceData.balance.toFixed(2);
+                        });
+                } else {
+                    accountLink.href = '../html/log.html';
+                    window.location.href = '../html/log.html';
+                }
+            });
+    </script>
+</body>
+</html>

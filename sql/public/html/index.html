@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Интернет-магазин цифровых игр и игровых аксессуаров. Широкий ассортимент, доступные цены, быстрая доставка.">
+    <meta name="keywords" content="игры, компьютерные игры, цифровые игры, игровые аксессуары, интернет-магазин игр">
+    <meta name="author" content="Game Store">
+    <meta name="copyright" content="Game Store">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="7 days">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="canonical" href="https://www.gamestore.com/">
+	<!-- Bootstrap reboot (для сброса стилей) -->
+	<link rel="stylesheet" href="libs/bootstrap-reboot.min.css">
+
+	<!-- Bootstrap сетка -->
+	<link rel="stylesheet" href="libs/bootstrap-grid.min.css">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/reboot.css">
+	<link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/goods.css">
+    <link rel="stylesheet" href="../css/footer.css">
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        main {
+            flex: 1 0 auto;
+            padding-bottom: 20px; /* Отступ от футера */
+        }
+        
+        #buy_h1{
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .buy-item {
+            margin-top: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .buy-item h3 {
+            margin: 0;
+        }
+        .buy-item p {
+            margin: 5px 0;
+        }
+        .rating {
+            font-weight: bold;
+        }
+        .row {
+                    margin-bottom: 10px;
+            display: flex;
+            overflow-x: auto; /* Создает горизонтальный скролл */
+            padding: 10px 0;
+        }
+
+        .card {
+            margin-right: 10px; /* Отступ между карточками */
+            flex: 0 0 auto; /* Не позволяет элементам сжиматься */
+        }
+        </style>
+<title>Магазин игр</title>
+</head>
+<body>
+    <header id="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-left">
+                    <img src="../images/istockphoto-1249882585-170667a.jpg" alt="logo" width="90" height="50">
+                    <a href="#" class="navbar-brand">GameStore</a>
+                </div>
+                <div class="navbar-right">
+                    <a href="#" class="callback" id="cartButton">Корзина</a>
+                    <a href="#" id="accountLink" class="callback">Личный кабинет</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+<main>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Корзина</h2>
+            <div id="cartItems">
+            </div>
+            <div class="modal-buttons">
+                <button id="payButton">Оплатить</button>
+                <button id="clearButton">Очистить корзину</button>
+            </div>
+        </div>
+    </div>
+    <div id="nav-container"></div>
+
+        <div class="buy-item">
+            <h2 class="block_padding">Последние купленные игры</h2>
+            <p class="block__subtitle">Смотрите, что покупают другие</p>
+    </div>
+    
+    <div id="latest-games" class="row"></div>
+
+        <div class="buy-item">
+            <h2  class="block_padding">Последние отзывы</h2>
+            <p class="block__subtitle">Что говорят наши покупатели</p>
+        </div>
+    
+    <div id="latest-reviews" class="row"></div>
+
+
+    <div class="block2">
+        <div class="block2_t">
+            <h2 class="block__title">GameStore</h2>
+            <p class="block__subtitle2">У нас только лучшее</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <img src="../images/robots.jpg" class="card-img-top" alt="Игра 1">
+                <a href="goods_discord.html" class="card-link">
+                    <button class="btn btn-primary btn-animated">Перейти</button>
+                </a>
+                  <div class="card-body">
+                    <h5 class="card-title">Гонки</h5>
+                    <p class="card-text">Жанр гонки, наслаждайтесь играя или обучайтесь</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="../images/robots.jpg" class="card-img-top" alt="Игра 2">
+                <a href="goods_games.html" class="card-link">
+                    <button class="btn btn-primary btn-animated">Перейти</button>
+                  </a>
+                  <div class="card-body">
+                    <h5 class="card-title">Игры (xbox/ps)</h5>
+                    <p class="card-text">Вы можете приобрести игры для консольных платформ</p>
+                  </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="../images/robots.jpg" class="card-img-top" alt="Игра 3">
+                <a href="goods_chess.html" class="card-link">
+                    <button class="btn btn-primary btn-animated">Перейти</button>
+                  </a>
+                  <div class="card-body">
+                    <h5 class="card-title">Шахматы</h5>
+                    <p class="card-text">Вы можете приобрести игры связанные с шахматами</p>
+                  </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+  <div id="footer-container"></div>
+    
+  <script>
+      // Загружаем футер из отдельного файла
+      fetch('footer.html')
+          .then(response => response.text())
+          .then(html => {
+              document.getElementById('footer-container').innerHTML = html;
+          });
+  </script>
+  <script>
+    // Загружаем nav из отдельного файла
+    fetch('nav.html')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('nav-container').innerHTML = html;
+        });
+</script>
+</body>
+<script>
+   document.addEventListener("DOMContentLoaded", function() {
+    // Получение последних купленных игр
+    fetch('/latest-games')
+        .then(response => response.json())
+        .then(games => {
+            const latestGamesContainer = document.getElementById('latest-games');
+            games.forEach(game => {
+                const item = document.createElement('div');
+                item.className = 'col-12'; 
+                item.innerHTML = `
+                    <div class="card">
+                        <img src="${game.image_url}" class="card-img-top" alt="${game.name}">
+                        <div class="card-body">
+                            <h5 class="card-title">${game.name}</h5>
+                        </div>
+                    </div>
+                `;
+                latestGamesContainer.appendChild(item);
+            });
+        })
+        .catch(error => console.error('Error fetching latest games:', error));
+
+    // Получение последних отзывов
+    fetch('/latest-reviews')
+        .then(response => response.json())
+        .then(reviews => {
+            const latestReviewsContainer = document.getElementById('latest-reviews');
+            reviews.forEach(review => {
+                const item = document.createElement('div');
+                item.className = 'col-12'; 
+                item.innerHTML = `
+                    <div class="card">
+                        <img src="${review.image_url}" class="card-img-top" alt="${review.product_name}">
+                        <div class="card-body">
+                            <h5 class="card-title">${review.product_name}</h5>
+                            <p class="rating">Рейтинг: ${review.rating}</p>
+                        </div>
+                    </div>
+                `;
+                latestReviewsContainer.appendChild(item);
+            });
+        })
+        .catch(error => console.error('Error fetching latest reviews:', error));
+});
+ // Проверяем авторизацию пользователя
+ fetch('/check-session')
+        .then(response => response.json())
+        .then(data => {
+            const accountLink = document.getElementById('accountLink');
+            if (data.isLoggedIn) {
+                if (data.userType === 'admin') {
+                    accountLink.href = '../html/adminLK.html'; // Admin 
+                } else {
+                    accountLink.href = '../html/lk.html'; // User 
+                }
+            } else {
+                accountLink.href = '../html/log.html'; // Login 
+            }
+        })
+        .catch(error => console.error('Ошибка проверки сессии:', error));
+</script>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Интернет-магазин цифровых игр и игровых аксессуаров. Широкий ассортимент, доступные цены, быстрая доставка.">
+    <meta name="keywords" content="игры, компьютерные игры, цифровые игры, игровые аксессуары, интернет-магазин игр">
+    <meta name="author" content="Game Store">
+    <meta name="copyright" content="Game Store">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="7 days">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="canonical" href="https://www.gamestore.com/">
+	<!-- Bootstrap reboot (для сброса стилей) -->
+	<link rel="stylesheet" href="libs/bootstrap-reboot.min.css">
+
+	<!-- Bootstrap сетка -->
+	<link rel="stylesheet" href="libs/bootstrap-grid.min.css">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/reboot.css">
+	<link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/cart.css">
+    <link rel="stylesheet" href="../css/sets.css">
+    <link rel="stylesheet" href="../css/reboot.css">
+	<link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/goods.css">
+    <link rel="stylesheet" href="../css/footer.css">
+
+    
+<title>Магазин игр</title>
+</head>
+<body>
+    <header id="header">
+        <nav class="navbar">
+            <div class="container">
+              <div class="navbar-left">
+                <img src="../images/istockphoto-1249882585-170667a.jpg" alt="logo" width="90" height="50">
+                <a href="#" class="navbar-brand">GameStore</a>
+            </div>
+                <div class="navbar-right">
+                    <a href="../html/cart.html" id="cartButton" class="callback">Корзина</a>
+                    <a href="#" id="accountLink" class="callback">Личный кабинет</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+<main>
+  
+    <div id="nav-container"></div>
+    
+    <div class="wrapper_sets">
+        <div class="container_sets">
+            <input type="radio" name="slide" id="c1" checked>
+            <label for="c1" class="card_sets">
+                <div class="row_sets">
+                    <div class="icon_sets">1</div>
+                    <div class="description_sets">
+                        <h4>Гонки</h4>
+                        <p>Наслаждайтесь гонками со своими друзьями</p>
+                    </div>
+                </div>
+                <a href="other_page.html" class="btn-center">Go to Other Page</a>
+            </label>
+            <input type="radio" name="slide" id="c2" >
+            <label for="c2" class="card_sets">
+                <div class="row_sets">
+                    <div class="icon_sets">2</div>
+                    <div class="description_sets">
+                        <h4>Консольные игры</h4>
+                        <p>Проводите время в играх с самой приятной атмосферой</p>
+                    </div>
+                </div>
+                <a href="other_page.html" class="btn-center">Go to Other Page</a>
+            </label>
+            <input type="radio" name="slide" id="c3" >
+            <label for="c3" class="card_sets">
+                <div class="row_sets">
+                    <div class="icon_sets">3</div>
+                    <div class="description_sets">
+                        <h4>Шахматы</h4>
+                        <p>Если играть, то только с пользой</p>
+                    </div>
+                <a href="other_page.html" class="btn-center">Переход</a>
+
+                </div>
+            </label>
+        </div>
+    </div>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Поиск по названию товара..." />
+    </div>
+   
+    
+    <div class="filter-controls">
+        <div class="filter-group">
+            <label for="sortSelect">Сортировать по:</label>
+            <select id="sortSelect" class="filter-select">
+                <option value="name-asc">Названию (А-Я)</option>
+                <option value="name-desc">Названию (Я-А)</option>
+                <option value="price-asc">Цене (по возрастанию)</option>
+                <option value="price-desc">Цене (по убыванию)</option>
+            </select>
+        </div>
+        
+        <div class="filter-group">
+            <label for="genreFilter">Жанр:</label>
+            <select id="genreFilter" class="filter-select">
+                <option value="all">Все жанры</option>
+                <option value="racing">Гонки</option>
+                <option value="console">Стратегии</option>
+                <option value="chess">Шахматы</option>
+            </select>
+        </div>
+        
+        <div class="filter-group">
+            <label for="priceRange">Ценовой диапазон:</label>
+            <select id="priceRange" class="filter-select">
+                <option value="all">Любая цена</option>
+                <option value="0-500">До 500 руб</option>
+                <option value="500-1000">500-1000 руб</option>
+                <option value="1000-5000">1000-5000 руб</option>
+                <option value="5000+">От 5000 руб</option>
+            </select>
+        </div>
+        
+        <button id="resetFilters" class="filter-reset">Сбросить фильтры</button>
+    </div>
+    
+    <!-- выгрузка товаров из бд -->
+    <div class="goods-wrapper" id="goods-list"></div>
+    <!-- выгрузка товаров из бд -->
+    <div class="goods-wrapper" id="goods-list"></div>
+</main>
+<div id="cartModal" class="cart-modal">
+    <div class="cart-modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Корзина</h2>
+        <div class="cart-items"></div>
+        <div class="cart-total">Итого: 0р</div>
+        <div class="cart-buttons">
+            <button class="clear-cart">Очистить</button>
+            <button class="checkout">Оплатить</button>
+        </div>
+    </div>
+</div>
+<div id="footer-container"></div>
+<script>
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('footer-container').innerHTML = html;
+        });
+</script>
+<script>
+    // Загружаем nav из отдельного файла
+    fetch('nav.html')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('nav-container').innerHTML = html;
+        });
+</script>    
+</body>
+<script>
+    const goodsList = document.getElementById('goods-list');
+    const cartModal = document.getElementById('cartModal');
+    const cartItems = document.querySelector('.cart-items');
+    const cartTotal = document.querySelector('.cart-total');
+    const searchInput = document.getElementById('searchInput');
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    // Проверяем авторизацию пользователя
+    fetch('/check-session')
+        .then(response => response.json())
+        .then(data => {
+            const accountLink = document.getElementById('accountLink');
+            if (data.isLoggedIn) {
+                if (data.userType === 'admin') {
+                    accountLink.href = '../html/adminLK.html'; // Admin dashboard
+                } else {
+                    accountLink.href = '../html/lk.html'; // User dashboard
+                }
+            } else {
+                accountLink.href = '../html/log.html'; // Login page
+            }
+        })
+        .catch(error => console.error('Ошибка проверки сессии:', error));
+
+let allProducts = []; // Глобальная переменная для хранения всех товаров
+
+// Подгрузка товаров из бд
+fetch('/products')
+    .then(response => response.json())
+    .then(products => {
+        allProducts = products;
+        applyFilters();
+    });
+
+// Функции сортировки и фильтрации
+function applyFilters() {
+    const searchQuery = searchInput.value.toLowerCase();
+    const sortValue = document.getElementById('sortSelect').value;
+    const genreFilter = document.getElementById('genreFilter').value;
+    const priceRange = document.getElementById('priceRange').value;
+    
+    let filteredProducts = [...allProducts];
+    
+    // Применяем поиск по названию
+    if (searchQuery) {
+        filteredProducts = filteredProducts.filter(product => 
+            product.name.toLowerCase().includes(searchQuery))
+    }
+    
+    // Применяем фильтр по жанру
+    if (genreFilter !== 'all') {
+        filteredProducts = filteredProducts.filter(product => 
+            product.genre === genreFilter)
+    }
+    
+    // Применяем фильтр по цене
+    if (priceRange !== 'all') {
+        const [min, max] = priceRange.split('-').map(Number);
+        if (priceRange.endsWith('+')) {
+            filteredProducts = filteredProducts.filter(product => 
+                product.price >= min)
+        } else {
+            filteredProducts = filteredProducts.filter(product => 
+                product.price >= min && (isNaN(max) || product.price <= max))
+        }
+    }
+    
+    // Применяем сортировку
+    filteredProducts = sortProducts(filteredProducts, sortValue);
+    
+    displayProducts(filteredProducts);
+}
+
+function sortProducts(products, sortValue) {
+    const [key, direction] = sortValue.split('-');
+    
+    return [...products].sort((a, b) => {
+        let valueA, valueB;
+        
+        if (key === 'name') {
+            valueA = a.name.toLowerCase();
+            valueB = b.name.toLowerCase();
+            return direction === 'asc' 
+                ? valueA.localeCompare(valueB) 
+                : valueB.localeCompare(valueA);
+        } else if (key === 'price') {
+            valueA = a.price;
+            valueB = b.price;
+            return direction === 'asc' 
+                ? valueA - valueB 
+                : valueB - valueA;
+        }
+        return 0;
+    });
+}
+
+// Обработчики событий для фильтров
+document.getElementById('sortSelect').addEventListener('change', applyFilters);
+document.getElementById('genreFilter').addEventListener('change', applyFilters);
+document.getElementById('priceRange').addEventListener('change', applyFilters);
+document.getElementById('resetFilters').addEventListener('click', resetFilters);
+searchInput.addEventListener('input', applyFilters);
+
+function resetFilters() {
+    document.getElementById('sortSelect').value = 'name-asc';
+    document.getElementById('genreFilter').value = 'all';
+    document.getElementById('priceRange').value = 'all';
+    searchInput.value = '';
+    applyFilters();
+}
+
+//  функция displayProducts
+function displayProducts(products) {
+    goodsList.innerHTML = '';
+    
+    if (products.length === 0) {
+        goodsList.innerHTML = '<p class="no-results">Товары не найдены. Попробуйте изменить параметры поиска.</p>';
+        return;
+    }
+    
+    products.forEach(product => {
+        const item = document.createElement('div');
+        item.className = 'goods-item';
+        item.innerHTML = `
+            <img src="${product.image_url}" alt="${product.name}" class="product-image">
+            <h3 class="goods-title">${product.name}</h3>
+            <p class="goods-genre">${product.genre}</p>
+            <p class="goods-price">${product.price}р</p>
+            <button class="btn btn-primary add-to-cart" data-id="${product.id}">Добавить в корзину</button>
+        `;
+        goodsList.appendChild(item);
+        
+        // Обработчик клика на товар
+        item.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('add-to-cart')) {
+                window.location.href = `product.html?id=${product.id}`;
+            }
+        });
+    });
+    
+    // Обработчики для кнопок "Добавить в корзину"
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const productId = button.getAttribute('data-id');
+            const product = allProducts.find(p => p.id == productId);
+            if (product) {
+                addToCart({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image_url,
+                    genre: product.genre
+                });
+            }
+        });
+    });
+}
+
+function addToCart(product) {
+    const existingItem = cart.find(item => item.id === product.id);
+    
+    if (!existingItem) {
+        // Сохраняем все необходимые данные, включая image_url
+        cart.push({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.image_url, // Используем image_url из БД
+            image_url: product.image_url, // Дублируем для совместимости
+            discount: product.discount || 0
+        });
+        localStorage.setItem('cart', JSON.stringify(cart));
+        showCartNotification();
+    } else {
+        showCartNotification('Товар уже в корзине');
+    }
+}
+
+function showCartNotification(message = 'Товар добавлен в корзину') {
+    const notification = document.createElement('div');
+    notification.className = 'cart-notification';
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.classList.add('fade-out');
+        setTimeout(() => notification.remove(), 500);
+    }, 2000);
+}
+</script>
+      <script src="../js/subscribe.js"></script>
+      <script src="../js/modalInfo.js"></script>
+      <script src="../js/script.js"></script>
+      <!-- <script src="../js/cart.js"></script> -->
+      <script src="../js/setsAnimated.js"></script>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Товар - Продукт 1</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background: url('../resources/nlo.jpg') no-repeat;
+            background-size: cover;
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+        .product-container {
+            max-width: 800px;
+            margin: auto;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+        .product-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        .product-image {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .product-description {
+            margin: 20px 0;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .product-price {
+            font-size: 24px;
+            color: #ffd700;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .add-to-cart {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: #fff;
+            color: #333;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .add-to-cart:hover {
+            background: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-left">
+                    <img src="../resources/istockphoto-1249882585-170667a.jpg" alt="logo" width="90" height="50">
+                    <a href="#" class="navbar-brand">GameStore</a>
+                </div>
+                <div class="navbar-right">
+                    <a href="#" class="callback">Корзина</a>
+                    <a href="../html/log.html" class="callback">Личный кабинет</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="product-container">
+            <h1 class="product-title">Продукт 1</h1>
+            <img src="../resources/games.jpg" alt="Продукт 1" class="product-image">
+            <p class="product-description">
+                Это описание продукта 1. Здесь вы можете указать особенности, преимущества и характеристики товара.
+            </p>
+            <p class="product-price">111р</p>
+            <a href="#" class="add-to-cart">Добавить в корзину</a>
+        </div>
+    </main>
+</body>
+</html>

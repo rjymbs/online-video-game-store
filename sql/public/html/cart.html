@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина - GameStore</title>
+    <link rel="stylesheet" href="../css/reboot.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/cart.css">
+    
+</head>
+<body>
+    <header id="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-left">
+                    <img src="../images/istockphoto-1249882585-170667a.jpg" alt="logo" width="90" height="50">
+                    <a href="../html/index.html" class="navbar-brand">GameStore</a>
+                </div>
+                <div class="navbar-right">
+                    <a href="../html/cart.html" id="cartButton" class="callback">Корзина</a>
+                    <a href="#" id="accountLink" class="callback">Личный кабинет</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <div id="nav-container"></div>
+    <main class="cart-container">
+        
+        <h1>Ваша корзина</h1>
+        
+        <div class="cart-content">
+            <div class="cart-items" id="cartItems">
+                <!-- Товары будут загружаться динамически -->
+                <div class="empty-cart-message">
+                    <p>Ваша корзина пуста</p>
+                    <a href="../html/sets.html" class="btn-continue-shopping">Продолжить покупки</a>
+                </div>
+            </div>
+            
+            <div class="cart-summary">
+                <h2>Итого</h2>
+                <div class="summary-details">
+                    <div class="summary-row">
+                        <span>Товары</span>
+                        <span id="itemsTotal">0 ₽</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Скидка</span>
+                        <span id="discountTotal">0 ₽</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Общая сумма</span>
+                        <span id="cartTotal">0 ₽</span>
+                    </div>
+                </div>
+                <button id="checkoutButton" class="btn-checkout" disabled>Перейти к оформлению</button>
+                <a href="../html/sets.html" class="btn-continue-shopping">Продолжить покупки</a>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="../js/cart.js"></script>
+    <script>
+        fetch('../html/footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footer-container').innerHTML = html;
+            });
+    </script>
+    <script>
+        fetch('../html/nav.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('nav-container').innerHTML = html;
+            });
+    </script>
+</body>
+</html>

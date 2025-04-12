@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет администратора</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/profile.css">
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background: url('../images/nlo.jpg') no-repeat;
+            background-size: cover;
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section h2 {
+            margin-bottom: 15px;
+        }
+        .form-group, .item {
+            margin: 10px 0;
+        }
+        .item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #fff;
+            color: #333;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #f0f0f0;
+        }
+        .input-box {
+            margin-bottom: 15px;
+        }
+        .input-box input, .input-box textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        .input-box input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .statistics {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .modal {
+        display: none; 
+        position: fixed; 
+        z-index: 1; 
+        left: 0;
+        top: 0;
+        width: 100%; 
+        height: 100%; 
+        overflow: auto; 
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4); 
+        padding-top: 60px;
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto; 
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%; 
+        color: black;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .toggle-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: left;
+    padding: 0;
+}
+
+.collapsible-content {
+    margin-top: 10px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-row span {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.filters select, .filters input {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+.filters button {
+    padding: 8px 15px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.filters button:hover {
+    background: #45a049;
+}
+    </style>
+</head>
+<body>
+    <div id="order-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3>Данные пользователя:</h3>
+            <div id="order-list"></div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h1>Личный кабинет администратора</h1>
+        
+        <div class="section">
+            <h2>Статистика продаж</h2>
+            <div class="statistics">
+                <div class="filters">
+                    <select id="stats-period">
+                        <option value="day">За день</option>
+                        <option value="week">За неделю</option>
+                        <option value="month">За месяц</option>
+                        <option value="year">За год</option>
+                        <option value="all">За все время</option>
+                    </select>
+                    
+                    <select id="stats-metric">
+                        <option value="count">Количество продаж</option>
+                        <option value="revenue">Сумма продаж</option>
+                        <option value="users">Активные покупатели</option>
+                    </select>
+                    
+                    <button onclick="fetchStatistics()">Применить</button>
+                </div>
+                
+                <div class="stats-results">
+                    <div class="stat-row">
+                        <span>Всего продаж:</span>
+                        <strong id="total-sales">0</strong>
+                    </div>
+                    <div class="stat-row">
+                        <span>Сумма продаж:</span>
+                        <strong id="total-revenue">0 ₽</strong>
+                    </div>
+                    <div class="stat-row">
+                        <span>Покупателей:</span>
+                        <strong id="total-customers">0</strong>
+                    </div>
+                    <div class="stat-row">
+                        <span>Новых покупателей:</span>
+                        <strong id="new-customers">0</strong>
+                    </div>
+                </div>
+                
+                <div id="sales-chart" style="height: 300px; margin-top: 20px;"></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Аналитика посещаемости</h2>
+            <div class="statistics">
+                <div class="filters">
+                    <select id="analytics-period">
+                        <option value="day">За день</option>
+                        <option value="week">За неделю</option>
+                        <option value="month">За месяц</option>
+                        <option value="year">За год</option>
+                    </select>
+                    <button onclick="fetchAnalytics()">Обновить</button>
+                </div>
+                
+                <div class="stats-results">
+                    <div class="stat-row">
+                        <span>Посетителей:</span>
+                        <strong id="total-visitors">0</strong>
+                    </div>
+                    <div class="stat-row">
+                        <span>Уникальных:</span>
+                        <strong id="unique-visitors">0</strong>
+                    </div>
+                    <div class="stat-row">
+                        <span>Возвратов:</span>
+                        <strong id="returning-visitors">0</strong>
+                    </div>
+                    <div class="stat-row">
+                        <span>Зарегистрированных:</span>
+                        <strong id="registered-visitors">0</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>
+                <button onclick="toggleVisibility('orders-history')" class="toggle-btn">История заказов</button>
+            </h2>
+            <div id="orders-history" class="collapsible-content" style="display: none;">
+                <div class="filters">
+                    <input type="text" id="order-search" placeholder="Поиск по товару или пользователю">
+                    <input type="date" id="order-date-from">
+                    <input type="date" id="order-date-to">
+                    <button onclick="fetchAllOrders()">Применить фильтры</button>
+                </div>
+                <div id="all-orders-list"></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Управление товарами</h2>
+            <form action="javascript:void(0);" onsubmit="addProduct()">
+                <div class="form-group input-box">
+                    <input type="text" id="product_name" placeholder="Название товара" required>
+                </div>
+                <div class="form-group input-box">
+                    <input type="number" id="price" placeholder="Цена" required>
+                </div>
+                <div class="form-group input-box">
+                    <textarea id="description" placeholder="Описание товара"></textarea>
+                </div>
+                <div class="form-group input-box">
+                    <input type="number" id="discount" placeholder="Скидка (%)" min="0" max="100">
+                </div>
+                <div class="form-group input-box">
+                    <input type="text" id="image" placeholder="URL изображения" required>
+                </div>
+                <div class="form-group input-box">
+                    <input type="text" id="file_path" placeholder="Ссылка на файл" required>
+                </div>
+                <div class="form-group input-box">
+                    <label for="genres">Выберите жанры:</label>
+                    <div>
+                        <input type="checkbox" name="genre_ids" value="1"> Гонки<br>
+                        <input type="checkbox" name="genre_ids" value="2"> Стратегии<br>
+                        <input type="checkbox" name="genre_ids" value="3"> Шахматы<br>
+                    </div>
+                </div>
+                <button type="submit" class="btn">Добавить товар</button>
+            </form>
+            <h3>Изменение или удаление товара</h3>
+            <form action="javascript:void(0);" onsubmit="updateProduct()">
+                <div class="form-group input-box">
+                    <input type="text" id="product_id" placeholder="ID товара для изменения" required>
+                    <input type="text" id="new_product_name" placeholder="Новое название товара">
+                </div>
+                <div class="form-group input-box">
+                    <input type="number" id="new_price" placeholder="Новая цена">
+                </div>
+                <div class="form-group input-box">
+                    <textarea id="new_description" placeholder="Новое описание товара"></textarea>
+                </div>
+                <div class="form-group input-box">
+                    <input type="number" id="new_discount" placeholder="Скидка (%)" min="0" max="100">
+                </div>
+                <div class="form-group input-box">
+                    <input type="text" id="new_image" placeholder="Новый URL изображения">
+                </div>
+                <div class="form-group input-box">
+                    <input type="text" id="new_file_path" placeholder="Новая ссылка на файл">
+                </div>
+                <button type="submit" class="btn">Изменить товар</button>
+            </form>
+            <form action="javascript:void(0);" onsubmit="deleteProduct()">
+                <div class="form-group input-box">
+                    <input type="text" id="delete_product_id" placeholder="ID товара для удаления" required>
+                </div>
+                <button type="submit" class="btn">Удалить товар</button>
+            </form>
+            <!-- <h3>Список товаров</h3>
+            <div id="product-list"></div> -->
+            <div class="section">
+                <h2>
+                    <button onclick="toggleVisibility('product-list')" class="toggle-btn">Список товаров</button>
+                </h2>
+                <div id="product-list" class="collapsible-content" style="display: none;">
+                    <div id="product-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Управление клиентами</h2>
+            <div class="section">
+                <h2>
+                    <button onclick="toggleVisibility('user-list')" class="toggle-btn">Список клиентов</button>
+                </h2>
+                <div id="user-list" class="collapsible-content" style="display: none;"></div>
+                <div id="user-list"></div>
+            </div>
+        </div>
+        <div class="section">
+            <h2>Жалобы пользователей</h2>
+            <div id="complaints-list"></div>
+        </div>
+        <button id="logout-btn">Выйти из личного кабинета</button>
+    </div>
+    </div>
+        
+        
+    </div>
+
+    <script>
+        // function toggleVisibility(containerId) {
+        //     const container = document.getElementById(containerId);
+        //     if (container.style.display === 'none') {
+        //         container.style.display = 'block';
+        //     } else {
+        //         container.style.display = 'none';
+        //     }
+        // }
+        
+        async function fetchProducts() {
+            const response = await fetch('/products');
+            const products = await response.json();
+            const productList = document.getElementById('product-list');
+            productList.innerHTML = '';
+            products.forEach(product => {
+                productList.innerHTML += `<div class="item"><strong>ID: ${product.id}</strong> - ${product.name} - ${product.price} ₽</div>`;
+            });
+        }
+
+        
+
+        async function assignAdmin(userId) {
+            await fetch(`/users/${userId}/assign-admin`, { method: 'POST' });
+            fetchUsers(); 
+        }
+
+        function toggleVisibility(containerId) {
+            const container = document.getElementById(containerId);
+            container.style.display = container.style.display === 'none' ? 'block' : 'none';
+        }
+
+
+        async function addProduct() {
+            const product = {
+                product_name: document.getElementById('product_name').value,
+                price: document.getElementById('price').value,
+                image: document.getElementById('image').value,
+                file_path: document.getElementById('file_path').value,
+                description: document.getElementById('description').value, 
+                discount: document.getElementById('discount').value, 
+                genres: Array.from(document.querySelectorAll('input[name="genre_ids"]:checked')).map(el => el.value)
+            };
+
+            const response = await fetch('/add_product', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(product)
+            });
+            if (response.ok) {
+                fetchProducts();
+            }
+        }
+        async function fetchAllOrders() {
+    const search = document.getElementById('order-search').value;
+    const dateFrom = document.getElementById('order-date-from').value;
+    const dateTo = document.getElementById('order-date-to').value;
+    
+    let url = '/admin/orders?';
+    if (search) url += `search=${encodeURIComponent(search)}&`;
+    if (dateFrom) url += `dateFrom=${dateFrom}&`;
+    if (dateTo) url += `dateTo=${dateTo}`;
+    
+    const response = await fetch(url);
+    const orders = await response.json();
+    
+    const ordersList = document.getElementById('all-orders-list');
+    ordersList.innerHTML = '';
+    
+    if (orders.length === 0) {
+        ordersList.innerHTML = '<p>Заказы не найдены</p>';
+        return;
+    }
+    
+    orders.forEach(order => {
+        ordersList.innerHTML += `
+            <div class="item">
+                <strong>Заказ #${order.id}</strong>
+                <p>Дата: ${new Date(order.order_date).toLocaleString()}</p>
+                <p>Товар: ${order.product_name} - ${order.price} ₽</p>
+                <p>Пользователь: ${order.user_name} (${order.user_email})</p>
+                ${order.product_image ? `<img src="${order.product_image}" style="max-width: 100px;">` : ''}
+            </div>
+        `;
+    });
+}
+        async function updateProduct() {
+            const product = {
+                product_id: document.getElementById('product_id').value,
+                new_product_name: document.getElementById('new_product_name').value,
+                new_price: document.getElementById('new_price').value,
+                new_description: document.getElementById('new_description').value,
+                new_discount: document.getElementById('new_discount').value,
+                new_image: document.getElementById('new_image').value, 
+                new_file_path: document.getElementById('new_file_path').value
+            };
+            
+            await fetch('/update_product', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(product)
+            });
+            fetchProducts();
+        }
+
+        async function deleteProduct() {
+            const product = {
+                product_id: document.getElementById('delete_product_id').value,
+            };
+            await fetch('/delete_product', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(product)
+            });
+            fetchProducts();
+        }
+
+        async function fetchUsers() {
+    const response = await fetch('/users');
+    const users = await response.json();
+    console.log(users); 
+    const userList = document.getElementById('user-list');
+    userList.innerHTML = '';
+    users.forEach(user => {
+        userList.innerHTML += `
+            <div class="item">
+                <strong>${user.name}</strong> - ${user.email}
+                <button onclick="viewUserDetails(${user.id})">Просмотр</button>
+                ${user.user_type === 'user' ? `<button onclick="blockUser(${user.id})">Блокировать</button>` : ''}
+                ${user.user_type === 'user' ? `<button onclick="assignAdmin(${user.id})">Сделать администратором</button>` : ''}
+            </div>`;
+    });
+}//<button onclick="blockUser(${user.id})">Блокировать</button>
+
+     async function viewUserDetails(userId) {
+        const response = await fetch(`/users/${userId}`);
+        const user = await response.json();
+        const orderResponse = await fetch(`/users/${userId}/orders`);
+        const orders = await orderResponse.json();
+
+        const userDetails = `
+            <p>Имя: ${user.name}</p>
+            <p>Почта: ${user.email}</p>
+            <p>Дата регистрации: ${new Date(user.created_at).toLocaleString()}</p>
+            <h3>История покупок:</h3>
+        `;
+        
+        const orderList = document.getElementById('order-list');
+        orderList.innerHTML = userDetails;
+        orders.forEach(order => {
+            orderList.innerHTML += `<p>${order.product_name} - ${order.price} ₽</p>`;
+        });
+        
+        document.getElementById('order-modal').style.display = 'block';
+    }
+
+function closeModal() {
+    document.getElementById('order-modal').style.display = 'none';
+}
+
+    async function blockUser(userId) {
+        await fetch(`/users/${userId}`, { method: 'DELETE' });
+        fetchUsers();
+    }
+
+    async function fetchStatistics() {
+    const period = document.getElementById('stats-period').value;
+    const metric = document.getElementById('stats-metric').value;
+    
+    const response = await fetch(`/admin/statistics?period=${period}&metric=${metric}`);
+    const stats = await response.json();
+    
+    // Обновляем основные метрики
+    document.getElementById('total-sales').innerText = stats.total_sales;
+    document.getElementById('total-revenue').innerText = stats.total_revenue.toLocaleString('ru-RU') + ' ₽';
+    document.getElementById('total-customers').innerText = stats.total_customers;
+    document.getElementById('new-customers').innerText = stats.new_customers;
+    
+    // Рисуем график (используем Chart.js или другую библиотеку)
+    renderSalesChart(stats.chartData, metric);
+}
+
+async function fetchAnalytics() {
+    const period = document.getElementById('analytics-period').value;
+    const response = await fetch(`/admin/analytics?period=${period}`);
+    const analytics = await response.json();
+    
+    document.getElementById('total-visitors').innerText = analytics.total_visits;
+    document.getElementById('unique-visitors').innerText = analytics.unique_visitors;
+    document.getElementById('returning-visitors').innerText = analytics.returning_visitors;
+    document.getElementById('registered-visitors').innerText = analytics.registered_visitors;
+}
+
+function renderSalesChart(data, metricType) {
+    const ctx = document.getElementById('sales-chart').getContext('2d');
+    
+    // Удаляем предыдущий график, если есть
+    if (window.salesChart) {
+        window.salesChart.destroy();
+    }
+    
+    const labels = data.map(item => new Date(item.date).toLocaleDateString());
+    const values = data.map(item => item.value);
+    const label = metricType === 'count' ? 'Количество продаж' : 
+                 metricType === 'revenue' ? 'Сумма продаж (₽)' : 'Активные покупатели';
+    
+    window.salesChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: label,
+                data: values,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+// Показываем/скрываем кастомный период
+document.getElementById('stats-period').addEventListener('change', function() {
+    document.getElementById('custom-period').style.display = 
+        this.value === 'custom' ? 'block' : 'none';
+});
+async function fetchAnalytics() {
+    const period = document.getElementById('analytics-period').value;
+    const response = await fetch(`/admin/analytics?period=${period}`);
+    const analytics = await response.json();
+    
+    document.getElementById('total-visitors').innerText = analytics.total_visits;
+    document.getElementById('unique-visitors').innerText = analytics.unique_visitors;
+    
+    const conversionRate = analytics.conversionRate.total_visitors > 0 
+        ? (analytics.conversionRate.visitors_with_purchase / analytics.conversionRate.total_visitors * 100).toFixed(2)
+        : 0;
+    document.getElementById('conversion-rate').innerText = `${conversionRate}%`;
+    
+    document.getElementById('avg-time').innerText = analytics.avg_time_spent 
+        ? `${Math.round(analytics.avg_time_spent / 60)} мин` 
+        : 'Нет данных';
+    
+    const pagesList = analytics.popularPages.map(p => `${p.page_url} (${p.visits})`).join(', ');
+    document.getElementById('popular-pages').innerText = pagesList || 'Нет данных';
+}
+    async function fetchComplaints() {
+        const response = await fetch('/support/complaints');
+        const complaints = await response.json();
+        const complaintsList = document.getElementById('complaints-list');
+        complaintsList.innerHTML = '';
+
+        complaints.forEach(complaint => {
+            complaintsList.innerHTML += `
+                <div>
+                    <strong>ID пользователя:</strong> ${complaint.user_id}<br>
+                    <strong>Тема:</strong> ${complaint.subject}<br>
+                    <strong>Причина:</strong> ${complaint.reason}<br>
+                    <strong>Почта:</strong> ${complaint.email}<br>
+                    <button onclick="respondToComplaint(${complaint.id})">Ответить</button>
+                </div>
+            `;
+        });
+    }
+
+    async function respondToComplaint(complaintId) {
+        const response = prompt('Введите ваш ответ:');
+        if (response) {
+            await fetch(`/support/complaints/${complaintId}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ response })
+            });
+            fetchComplaints(); 
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        fetchProducts();
+        fetchUsers();
+        fetchStatistics();
+        fetchComplaints(); 
+        fetchAllOrders();
+        fetchAnalytics();
+    });
+    document.getElementById('logout-btn').addEventListener('click', function() {
+            fetch('/logout', { method: 'POST' })
+                .then(() => {
+                    window.location.href = '/html/log.html'; 
+                })
+                .catch(error => console.error('Logout error:', error));
+        });
+    </script>
+</body>
+</html>

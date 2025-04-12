@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Интернет-магазин цифровых игр и игровых аксессуаров. Широкий ассортимент, доступные цены, быстрая доставка.">
+    <meta name="keywords" content="игры, компьютерные игры, цифровые игры, игровые аксессуары, интернет-магазин игр">
+    <meta name="author" content="Game Store">
+    <meta name="copyright" content="Game Store">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="7 days">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="canonical" href="https://www.gamestore.com/">
+	<!-- Bootstrap reboot (для сброса стилей) -->
+	<link rel="stylesheet" href="libs/bootstrap-reboot.min.css">
+
+	<!-- Bootstrap сетка -->
+	<link rel="stylesheet" href="libs/bootstrap-grid.min.css">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/reboot.css">
+	<link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/goods.css">
+    <link rel="stylesheet" href="../css/footer.css">
+
+    <style>
+        #review_h1{
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .review-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .review-item h3 {
+            margin: 0;
+        }
+        .review-item p {
+            margin: 5px 0;
+        }
+        .rating {
+            font-weight: bold;
+        }
+        </style>
+<title>Магазин игр</title>
+</head>
+<body>
+    <header id="header">
+        <nav class="navbar">
+            <div class="container">
+              <div class="navbar-left">
+                <img src="../images/istockphoto-1249882585-170667a.jpg" alt="logo" width="90" height="50">
+                <a href="#" class="navbar-brand">GameStore</a>
+            </div>
+                <div class="navbar-right">
+                    <a href="#" id="cartButton" class="callback">Корзина</a>
+                    <a href="#" id="accountLink" class="callback">Личный кабинет</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+<main>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Корзина</h2>
+            <div id="cartItems">
+            </div>
+            <div class="modal-buttons">
+                <button id="payButton">Оплатить</button>
+                <button id="clearButton">Очистить корзину</button>
+            </div>
+        </div>
+    </div>
+    <div class="navbar-submenu">
+        <div class="navbar-nav">
+            <ul class="navbar-nav-list">
+                <li>
+                    <a href="index.html">Главная</a>
+                </li>
+                <li>
+                    <a href="#footer">О Нас</a>
+                </li>
+                <li>
+                    <a href="../html/sets.html">Поиск товара</a>
+                </li>
+                <li>
+                    <a href="#">Список жанров</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../html/goods_discord.html">Гонки</a></li>
+                            <li><a href="../html/goods_games.html">Стратегии</a></li>
+                            <li><a href="../html/goods_chess.html">Шахматы</a></li>
+                        </ul>
+                </li>
+                <li>
+                    <a href="../html/reviews.html">Отзывы товаров</a>
+                </li>
+                <li>
+                    <a href="../html/support.html">Обратиться в поддержку</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <h1 id="review_h1">Отзывы о товарах</h1>
+        <div id="reviews-list"></div>
+    </div>
+    
+</main>
+<footer class="footer">
+    <div class="container"  >
+      <div class="row">
+        <div class="col-md-3">
+          <h4 id="footer">О нас</h4>
+          <p>Мы являемся ведущим онлайн-магазином игр. Мы предлагаем широкий ассортимент цифровых игр по доступным ценам.</p>
+        </div>
+        <div class="col-md-3">
+          <h4>Навигация</h4>
+          <ul>
+            <li><a href="../html/index.html">Главная</a></li>
+            <li><a href="../html/sets.html">Наборы по жанрам</a></li>
+            <li><a href="../html/goods_discord.html">Популярная подборка</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h4>Контакты</h4>
+          <p>
+            discord: GameStore<br>
+            Email: GameStore@game-store.GameStore<br>
+          </p>
+        </div>
+        <div class="col-md-3">
+          <h4>Подписка</h4>
+          <p>Подпишитесь на наши новости и акции:</p>
+          <form id="subscribeForm">
+            <div class="form-group">
+              <input type="email" class="form-control" id="emailInput" placeholder="Введите email" required>
+            </div>
+            <button type="submit" class="btn btn-primary" id="subscribeButton" >Подписаться</button>
+          </form>
+          <div id="subscribeMessage" class="mt-2"></div>
+      </div>
+      <div class="row2">
+        <div class="col-md-12 text-center">
+          <p>&copy; 2024 Game Store.</p>
+        </div>
+      </div>
+    </div>
+  </footer>    
+      
+</body>
+<script>
+    // Проверяем авторизацию пользователя
+ fetch('/check-session')
+        .then(response => response.json())
+        .then(data => {
+            const accountLink = document.getElementById('accountLink');
+            if (data.isLoggedIn) {
+                if (data.userType === 'admin') {
+                    accountLink.href = '../html/adminLK.html'; 
+                } else {
+                    accountLink.href = '../html/lk.html'; 
+                }
+            } else {
+                accountLink.href = '../html/log.html';
+            }
+        })
+        .catch(error => console.error('Ошибка проверки сессии:', error));
+ document.addEventListener("DOMContentLoaded", function() {
+            fetch('/reviews') 
+                .then(response => response.json())
+                .then(reviews => {
+                    const reviewsList = document.getElementById('reviews-list');
+                    reviews.forEach(review => {
+                        const item = document.createElement('div');
+                        item.className = 'review-item';
+                        const userName = review.show_name ? review.user_name : 'Гость'; 
+                        item.innerHTML = `
+                            <h3>Пользователь: ${userName}</h3>
+                            <h3>Название: ${review.product_name}</h3>
+                            <p>Отзыв: ${review.comment}</p>
+                            <p class="rating">Рейтинг: ${review.rating}</p>
+                            <p>Дата: ${new Date(review.created_at).toLocaleString()}</p>
+                        `;
+                        reviewsList.appendChild(item);
+                    });
+                })
+                .catch(error => console.error('Error fetching reviews:', error));
+        });
+</script>
+</html>

@@ -1,0 +1,91 @@
+.order-success-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    padding: 20px;
+}
+
+.order-success-content {
+    text-align: center;
+    max-width: 600px;
+    padding: 40px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background-color: #4cc9f0;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.order-success-content h1 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.order-success-content p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.order-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-continue-shopping,
+.btn-view-orders {
+    padding: 12px 25px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.btn-continue-shopping {
+    background-color: #4cc9f0;
+    color: white;
+    border: 1px solid #4cc9f0;
+}
+
+.btn-continue-shopping:hover {
+    background-color: #3aa8d8;
+    border-color: #3aa8d8;
+}
+
+.btn-view-orders {
+    background-color: white;
+    color: #4cc9f0;
+    border: 1px solid #4cc9f0;
+}
+
+.btn-view-orders:hover {
+    background-color: #f0f8ff;
+}
+
+@media (max-width: 480px) {
+    .order-actions {
+        flex-direction: column;
+    }
+    
+    .btn-continue-shopping,
+    .btn-view-orders {
+        width: 100%;
+    }
+}

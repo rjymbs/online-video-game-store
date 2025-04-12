@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title>Галерея товаров</title>
+  <style>
+    .gallery {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 400px;
+    }
+
+    .product-card {
+      width: 200px;
+      margin: 0 10px;
+      display: none;
+      text-align: center;
+    }
+
+    .product-card img {
+      max-width: 150px;
+      max-height: 150px;
+    }
+
+    .product-card h3 {
+      margin-top: 10px;
+      font-size: 16px;
+    }
+
+    .product-card p {
+      margin-top: 5px;
+      font-size: 14px;
+      color: #888;
+    }
+
+    .gallery-btn {
+      display: inline-block;
+      padding: 10px;
+      background-color: #000;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+      outline: none;
+      top: 50%;
+    }
+
+    .gallery-btn-left {
+      left: 10px;
+    }
+
+    .gallery-btn-right {
+      right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="gallery">
+    <div class="gallery-btn gallery-btn-left">&lt;</div>
+    <div class="product-card">
+      <img src="1.png" alt="Товар 1">
+      <h3>Товар 1</h3>
+      <p>$9.99</p>
+    </div>
+    <div class="product-card">
+      <img src="2.png" alt="Товар 2">
+      <h3>Товар 2</h3>
+      <p>$14.99</p>
+    </div>
+    <div class="product-card">
+      <img src="3.png" alt="Товар 3">
+      <h3>Товар 3</h3>
+      <p>$19.99</p>
+    </div>
+    <div class="product-card">
+      <img src="4.png" alt="Товар 4">
+      <h3>Товар 4</h3>
+      <p>$24.99</p>
+    </div>
+    <div class="product-card">
+      <img src="5.png" alt="Товар 5">
+      <h3>Товар 5</h3>
+      <p>$29.99</p>
+    </div>
+    <div class="product-card">
+      <img src="6.jpg" alt="Товар 6">
+      <h3>Товар 6</h3>
+      <p>$34.99</p>
+    </div>
+    <div class="product-card">
+      <img src="7.jpg" alt="Товар 7">
+      <h3>Товар 7</h3>
+      <p>$39.99</p>
+    </div>
+    <div class="gallery-btn gallery-btn-right">&gt;</div>
+  </div>
+  
+
+  <script>
+    const gallery = document.querySelector('.gallery');
+    const productCards = gallery.querySelectorAll('.product-card');
+    const prevButton = document.querySelector('.gallery-btn-left');
+    const nextButton = document.querySelector('.gallery-btn-right');
+    let currentIndex = 0;
+    const numVisibleCards = 3;
+
+    function updateGallery() {
+      productCards.forEach((card, index) => {
+        if (index >= currentIndex && index < currentIndex + numVisibleCards) {
+          card.style.display = 'inline-block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function scrollGallery(forward) {
+      if (forward) {
+        currentIndex = Math.min(currentIndex + 1, productCards.length - numVisibleCards);
+      } else {
+        currentIndex = Math.max(currentIndex - 1, 0);
+      }
+      updateGallery();
+    }
+
+    prevButton.addEventListener('click', () => {
+      scrollGallery(false);
+    });
+
+    nextButton.addEventListener('click', () => {
+      scrollGallery(true);
+    });
+
+    updateGallery();
+  </script>
+</body>
+</html>

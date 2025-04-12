@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Интернет-магазин цифровых игр и игровых аксессуаров. Регистрация нового пользователя.">
+    <meta name="keywords" content="игры, регистрация, цифровые игры, интернет-магазин игр">
+    <meta name="author" content="Game Store">
+    <meta name="copyright" content="Game Store">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="7 days">
+    <link rel="canonical" href="https://www.gamestore.com/">
+    <title>Регистрация</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/reg.css">
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Регистрация</h1>
+        <form action="/register" method="POST">
+            <div class="input-box">
+                <input type="text" name="name" placeholder="Имя" required>
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <input type="email" name="email" placeholder="Электронная почта" required>
+                <i class='bx bxs-envelope'></i>
+            </div>
+            <div class="input-box">
+                <input type="password" name="password" placeholder="Пароль" required>
+                <i class='bx bxs-lock-alt'></i>
+            </div>
+            <div class="input-box">
+                <input type="password" name="confirmPassword" placeholder="Подтверждение пароля" required>
+                <i class='bx bxs-lock-alt'></i>
+            </div>
+            <button type="submit" class="btn">Создать аккаунт</button>
+            <div class="register-link">
+                <p>Уже есть аккаунт? <a href="log.html">Авторизация</a></p>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
